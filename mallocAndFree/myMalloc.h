@@ -4,11 +4,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define malloc( x ) mymalloc( x , __FILE__ , __LINE__ )
-#define free( x ) myfree( x , __FILE__ , __LINE__ )
+#define malloc( x ) myMalloc( x , __FILE__ , __LINE__ )
+#define free( x ) myFree( x , __FILE__ , __LINE__ )
 
 
-void *mymalloc(unsigned int size, char *file, int line);
-void myfree(void *p, char *file, int line);
+void *myMalloc(unsigned int size, char *file, int line);
+void myFree(void *p, char *file, int line);
 
 #endif
