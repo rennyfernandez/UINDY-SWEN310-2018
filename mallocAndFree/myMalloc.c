@@ -28,10 +28,27 @@ static int getFreeIndex() {
 }
 
 void* myMalloc(unsigned int size, char *file, int line){
-    // Example of how to use the *file and line vars
-    if (size == 0) {
+    static int initialized = 0;
+	struct MemEntry *p;
+	struct MemEntry *next;
+	static struct MemEntry *root;
+	
+	// Example of how to use the *file and line vars
+	if (size == 0) {
 		fprintf(stderr, "Unable to allocate 0 bytes in FILE: '%s' on LINE: '%d'\n", file, line);
 		return 0;
+	}
+
+    // 1st time called
+	if(!initialized)	
+	{
+		// create a root chunk at the beginning of the memory block
+		root = (struct MemEntry*) memblock;
+		root->prev = root->next = 0;
+		root->size = MEMSIZE - sizeof(struct MemEntry);
+		root->isfree = 1;
+		initialized = 1;
+		memEntries[getFreeIndex()] = memblock;
 	}
 }
 
