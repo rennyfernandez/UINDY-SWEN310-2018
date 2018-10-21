@@ -4,9 +4,6 @@
 
 #define SIZE 10
 
-void task1();
-void task2malloc();
-void task2myMalloc();
 unsigned int randSeed(int* seed);
 
 int main(int argc, char *argv[])
